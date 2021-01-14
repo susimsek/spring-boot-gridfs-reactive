@@ -22,9 +22,13 @@ public class CustomErrorAttributes extends DefaultErrorAttributes {
         long timestamp = ((Date) attributes.get("timestamp")).getTime();
 
         errorAttributes.put("status", attributes.get("status"));
+        Throwable ex = getError(webRequest);
+        errorAttributes.put("exception", ex.getClass().getSimpleName());
         errorAttributes.put("message", attributes.get("message"));
         errorAttributes.put("path", attributes.get("path"));
         errorAttributes.put("timestamp", timestamp);
+
+
 
         if(attributes.containsKey("errors")){
             List<FieldError> fieldErrors = (List<FieldError>) attributes.get("errors");
