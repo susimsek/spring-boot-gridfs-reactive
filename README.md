@@ -26,6 +26,7 @@ docker-compose up -d
 * Mongodb
 * Spring Boot Web Flux
 * Spring Boot Actuator
+* Jib Maven Plugin
 * Lombok
 * Dev Tools
 * Spring Boot Test
