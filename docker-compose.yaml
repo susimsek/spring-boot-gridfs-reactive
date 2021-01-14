@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  app:
+    image: app:${SERVICE_IMAGE_TAG}
+    container_name: app
+    restart: ${RESTART_POLICY}
+    environment:
+      - TZ
+      - SERVER_PORT
+      - API_BASE_PATH
+      - MONGODB_HOST
+      - MONGODB_DATABASE
+      - MONGODB_USERNAME
+      - MONGODB_PASSWORD
+      - GRIDFS_BUCKET_NAME
+      - MAX_FILE_SIZE
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+  mongodb:
+    image: bitnami/mongodb:${MONGO_IMAGE_TAG}
+    container_name: mongodb
+    restart: ${RESTART_POLICY}
+    environment:
+      - TZ
+      - MONGODB_USERNAME
+      - MONGODB_PASSWORD
+      - MONGODB_DATABASE
+      - MONGODB_ROOT_PASSWORD
+    volumes:
+      - ./data/mongodb:/bitnami/mongodb:Z
+    ports:
+      - 27017:27017
