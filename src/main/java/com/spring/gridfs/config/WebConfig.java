@@ -21,7 +21,6 @@ public class WebConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowCredentials(true);
         config.setMaxAge(MAX_AGE_SECS);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
