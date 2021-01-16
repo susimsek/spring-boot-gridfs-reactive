@@ -12,6 +12,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.FileNotFoundException;
+
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -48,7 +50,9 @@ public class FileController {
 
     @DeleteMapping("/files/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteFile(@PathVariable String id) {
-        return fileService.deleteFile(id);
+    public Mono<Void> deleteFile(@PathVariable String id) throws FileNotFoundException {
+        throw new FileNotFoundException();
+
+        //return fileService.deleteFile(id);
     }
 }

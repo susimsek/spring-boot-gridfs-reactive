@@ -121,8 +121,6 @@ public class ExceptionTranslator implements ProblemHandling{
     }
 
     private boolean containsPackageName(String message) {
-
-        // This list is for sure not complete
-        return StringUtils.containsAny(message, "org.", "java.", "net.", "javax.", "com.", "io.", "de.", "com.spring.gridfs");
+        return StringUtils.containsAny(message,environment.getProperty("problem.unexpected.error.package-list",String[].class));
     }
 }
