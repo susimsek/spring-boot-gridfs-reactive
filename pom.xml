@@ -24,9 +24,21 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jib-maven-plugin.version>2.7.1</jib-maven-plugin.version>
         <jib-docker-image>adoptopenjdk:11-jre-hotspot</jib-docker-image>
+        <problem-spring-webflux.version>0.26.2</problem-spring-webflux.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-webflux</artifactId>
+            <version>${problem-spring-webflux.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
