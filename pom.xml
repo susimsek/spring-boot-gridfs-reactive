@@ -26,6 +26,7 @@
         <jib-docker-image>adoptopenjdk:11-jre-hotspot</jib-docker-image>
         <problem-spring-webflux.version>0.26.2</problem-spring-webflux.version>
         <commons-lang3.version>3.11</commons-lang3.version>
+        <springdoc.version>1.5.2</springdoc.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,16 @@
             <groupId>org.zalando</groupId>
             <artifactId>problem-spring-webflux</artifactId>
             <version>${problem-spring-webflux.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-core</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

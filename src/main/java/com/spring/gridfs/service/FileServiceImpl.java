@@ -1,6 +1,7 @@
 package com.spring.gridfs.service;
 
 import com.spring.gridfs.exception.ResourceNotFoundException;
+import com.spring.gridfs.model.FileResponseDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -10,8 +11,6 @@ import org.springframework.data.mongodb.gridfs.ReactiveGridFsResource;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import java.util.Map;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -24,9 +23,11 @@ public class FileServiceImpl implements FileService {
     final ReactiveGridFsOperations gridFsOperations;
 
     @Override
-    public Mono<Object> uploadFile(Mono<FilePart> filePart) {
+    public Mono<FileResponseDto> uploadFile(Mono<FilePart> filePart) {
         return filePart.flatMap(part -> gridFsOperations.store(part.content(), part.filename()))
-                .map((id) -> Map.of("id", id.toHexString()));
+                .map((id) -> FileResponseDto.builder()
+                        .id(id.toHexString())
+                        .build());
     }
 
     @Override
