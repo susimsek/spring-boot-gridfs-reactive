@@ -26,6 +26,8 @@ docker-compose up -d
 * Mongodb
 * Spring Boot Web Flux
 * Problem Spring Web Flux
+* SpringDocs Openapi Web Flux Core
+* SpringDocs Openapi Web Flux Ui
 * Spring Boot Actuator
 * Maven Jib Plugin
 * Maven Clean Plugin
