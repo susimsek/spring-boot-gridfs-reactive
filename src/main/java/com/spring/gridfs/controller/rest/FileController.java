@@ -1,4 +1,4 @@
-package com.spring.gridfs.controller;
+package com.spring.gridfs.controller.rest;
 
 import com.spring.gridfs.model.FileResponseDto;
 import com.spring.gridfs.service.FileService;
