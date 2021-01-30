@@ -3,6 +3,8 @@ package com.spring.gridfs.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,4 +13,8 @@ import lombok.experimental.FieldDefaults;
 public class FileResponseDto {
 
     String id;
+
+    String name;
+
+    Date uploadedDate;
 }

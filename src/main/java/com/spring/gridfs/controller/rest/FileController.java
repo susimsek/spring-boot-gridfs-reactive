@@ -4,6 +4,7 @@ import com.spring.gridfs.model.FileResponseDto;
 import com.spring.gridfs.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,6 +32,18 @@ public class FileController {
     final FileService fileService;
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Ok",content = @Content(array = @ArraySchema(schema = @Schema(implementation = FileResponseDto.class)))),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",content = @Content)
+
+    })
+    @Operation(summary = "Get all Files")
+    @GetMapping(value = "/files" )
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<FileResponseDto> getFiles(){
+        return fileService.getFiles();
+    }
+
+    @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Ok",content = @Content(schema = @Schema(implementation = FileResponseDto.class))),
             @ApiResponse(responseCode = "500", description = "Internal Server Error",content = @Content)
 
@@ -38,7 +51,7 @@ public class FileController {
     @Operation(summary = "Upload new File")
     @PostMapping(value = "/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
     @ResponseStatus(HttpStatus.OK)
-    public Mono<FileResponseDto> uploadFile(@RequestPart(value = "file") Mono<FilePart> file){
+    public Mono<FileResponseDto> uploadFile(@RequestPart(name = "file") @Parameter(description = "File to be uploaded", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE)) Mono<FilePart> file){
         return fileService.uploadFile(file);
     }
 
@@ -88,7 +101,7 @@ public class FileController {
     @Operation(summary = "Delete existing File")
     @DeleteMapping("/files/{fileId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteFile(@Parameter(description="Id of the File", required=true) @PathVariable String fileId){
+    public Mono<Boolean> deleteFile(@Parameter(description="Id of the File", required=true) @PathVariable String fileId){
         return fileService.deleteFile(fileId);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.server.WebExceptionHandler;
 import org.zalando.problem.spring.webflux.advice.ProblemExceptionHandler;
 import org.zalando.problem.spring.webflux.advice.ProblemHandling;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 
 @Configuration
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WebConfig {
+public class WebConfig implements WebFluxConfigurer {
 
    final long MAX_AGE_SECS = 3600;
 

@@ -9,12 +9,15 @@ services:
       - TZ
       - SERVER_PORT
       - API_BASE_PATH
+      - MAX_FILE_SIZE
       - MONGODB_HOST
       - MONGODB_DATABASE
       - MONGODB_USERNAME
       - MONGODB_PASSWORD
       - GRIDFS_BUCKET_NAME
-      - MAX_FILE_SIZE
+      - REDIS_HOST
+      - REDIS_PORT
+      - REDIS_PASSWORD
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
 
@@ -29,6 +32,18 @@ services:
       - MONGODB_DATABASE
       - MONGODB_ROOT_PASSWORD
     volumes:
-      - ./data/mongodb:/bitnami/mongodb:Z
+      - ./data/mongodb-data:/bitnami/mongodb:Z
     ports:
       - 27017:27017
+
+  redis:
+    image: bitnami/redis:${REDIS_IMAGE_TAG}
+    container_name: redis
+    restart: ${RESTART_POLICY}
+    environment:
+      - TZ
+      - REDIS_PASSWORD
+    volumes:
+      - ./data/redis-data:/bitnami/redis/data:Z
+    ports:
+      - 6379:6379
