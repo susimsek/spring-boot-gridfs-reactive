@@ -24,10 +24,13 @@ docker-compose up -d
 
 * Spring Boot 2.4.1
 * Mongodb
+* Redis
 * Spring Boot Web Flux
 * Problem Spring Web Flux
 * SpringDocs Openapi Web Flux Core
 * SpringDocs Openapi Web Flux Ui
+* Spring Data Redis
+* Reactive Redis Cache
 * Spring Boot Actuator
 * Maven Jib Plugin
 * Maven Clean Plugin
