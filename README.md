@@ -27,8 +27,8 @@ docker-compose up -d
 * Redis
 * Spring Boot Web Flux
 * Problem Spring Web Flux
-* SpringDocs Openapi Web Flux Core
-* SpringDocs Openapi Web Flux Ui
+* SpringDoc Openapi Web Flux Core
+* SpringDoc Openapi Web Flux Ui
 * Spring Data Redis
 * Reactive Redis Cache
 * Spring Boot Actuator
